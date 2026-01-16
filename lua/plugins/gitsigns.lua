@@ -1,4 +1,8 @@
 return {
 	"lewis6991/gitsigns.nvim",
-	config = true,
+	-- config = true,
+	opts = {
+		signcolumn = true,
+		max_file_length = 10000
+	}
 }
