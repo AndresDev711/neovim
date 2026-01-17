@@ -11,13 +11,12 @@ return {
 				{
 					'filename',
 					path = 1,      -- 0:Solo nombre 1:Ruta relativa, 2:Ruta absoluta
-					file_status = true, -- Muestra el archivo modificado
+					file_status = false, -- Muestra el archivo modificado
 					fmt = function(name)
 						return '📁 ' .. name
 					end,
-					color = { fg = '#6AEB38' }
+					color = { fg = '#6AEB38' },
 				},
-
 				-- STATUS (modificado / readonly)
 				{
 					function()
