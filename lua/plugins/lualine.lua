@@ -13,7 +13,7 @@ return {
 					path = 1,      -- 0:Solo nombre 1:Ruta relativa, 2:Ruta absoluta
 					file_status = false, -- Muestra el archivo modificado
 					fmt = function(name)
-						return '📁 ' .. name
+						return '📁' .. name
 					end,
 					color = { fg = '#6AEB38' },
 				},
@@ -21,10 +21,10 @@ return {
 				{
 					function()
 						if vim.bo.modified then
-							return ' ●'
+							return '●'
 						end
 						if vim.bo.readonly then
-							return ' [RO]'
+							return '[RO]'
 						end
 						return ''
 					end,
