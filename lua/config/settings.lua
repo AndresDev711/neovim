@@ -12,6 +12,21 @@ vim.opt.signcolumn = "yes"
 vim.opt.cursorline = true
 vim.opt.updatetime = 200
 
+--database DADBOD
+vim.g.db_ui_use_nerd_fonts = 1
+vim.env.PATH = vim.env.PATH .. ":/opt/homebrew/opt/mysql-client/bin"
+vim.g.db_ui_save_location = "~/Projects/db"
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "sql", "mysql", "plsql" },
+  callback = function()
+    require("blink.cmp").setup.buffer({
+      sources = {
+        default = { "dadbod", "buffer" },
+      },
+    })
+  end,
+})
+
 local function set_line_number_colors()
 	vim.api.nvim_set_hl(0, "CursorLineNr", {
 		fg = "#ffb86c",
@@ -33,14 +48,14 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 })
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 	callback = function()
-    local clients = vim.lsp.get_clients({ bufnr = 0 })
-    for _, client in ipairs(clients) do
-      if client.server_capabilities.documentHighlightProvider then
-        vim.lsp.buf.document_highlight()
-        return
-      end
-    end
-  end,
+		local clients = vim.lsp.get_clients({ bufnr = 0 })
+		for _, client in ipairs(clients) do
+			if client.server_capabilities.documentHighlightProvider then
+				vim.lsp.buf.document_highlight()
+				return
+			end
+		end
+	end,
 })
 vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
 	callback = vim.lsp.buf.clear_references,

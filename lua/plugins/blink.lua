@@ -4,6 +4,7 @@ return {
 	event = "InsertEnter",
 	dependencies = {
 		"L3MON4D3/LuaSnip",
+		"kristijanhusak/vim-dadbod-completion",
 	},
 	opts = {
 		keymap = {
@@ -16,6 +17,20 @@ return {
 		completion = {
 			documentation = {
 				auto_show = true,
+			},
+		},
+		sources = {
+			default = {
+				"lsp",
+				"path",
+				"buffer",
+				"dadbod",
+			},
+			providers = {
+				dadbod = {
+					name = "vim-dadbod-completion",
+					module = "vim_dadbod_completion.blink",
+				},
 			},
 		},
 	},
