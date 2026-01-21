@@ -15,17 +15,8 @@ vim.opt.updatetime = 200
 --database DADBOD
 vim.g.db_ui_use_nerd_fonts = 1
 vim.env.PATH = vim.env.PATH .. ":/opt/homebrew/opt/mysql-client/bin"
-vim.g.db_ui_save_location = "~/Projects/db"
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "sql", "mysql", "plsql" },
-  callback = function()
-    require("blink.cmp").setup.buffer({
-      sources = {
-        default = { "dadbod", "buffer" },
-      },
-    })
-  end,
-})
+vim.g.db_ui_save_location = vim.fn.expand("~/Projects/db")
+
 
 local function set_line_number_colors()
 	vim.api.nvim_set_hl(0, "CursorLineNr", {
@@ -46,6 +37,15 @@ set_line_number_colors()
 vim.api.nvim_create_autocmd("ColorScheme", {
 	callback = set_line_number_colors
 })
+
+-- CURSOR LINKING --nofunciona en warp
+vim.opt.guicursor = {
+  "n-v-c:block-Cursor/lCursor",
+  "i-ci-ve:ver25-Cursor/lCursor",
+  "r-cr-o:hor20-Cursor/lCursor",
+  "a:blinkwait700-blinkoff400-blinkon250",
+}
+
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 	callback = function()
 		local clients = vim.lsp.get_clients({ bufnr = 0 })

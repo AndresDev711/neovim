@@ -10,7 +10,7 @@ return {
 			lualine_c = {
 				{
 					'filename',
-					path = 1,      -- 0:Solo nombre 1:Ruta relativa, 2:Ruta absoluta
+					path = 1,       -- 0:Solo nombre 1:Ruta relativa, 2:Ruta absoluta
 					file_status = false, -- Muestra el archivo modificado
 					fmt = function(name)
 						return '📁' .. name
@@ -38,6 +38,13 @@ return {
 						return {}
 					end,
 				},
+			},
+			lualine_x = {
+				"encoding",
+				{
+					"filetype",
+					icon_only = true
+				}
 			}
 		},
 		inactive_winbar = {

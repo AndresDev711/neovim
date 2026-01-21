@@ -4,6 +4,7 @@ return {
 	event = "InsertEnter",
 	dependencies = {
 		"L3MON4D3/LuaSnip",
+		"rafamadriz/friendly-snippets",
 		"kristijanhusak/vim-dadbod-completion",
 	},
 	opts = {
@@ -22,9 +23,15 @@ return {
 		sources = {
 			default = {
 				"lsp",
+				"snippets",
 				"path",
 				"buffer",
 				"dadbod",
+			},
+			per_filetype = {
+				sql = { "dadbod", "buffer" },
+				mysql = { "dadbod", "buffer" },
+				plsql = { "dadbod", "buffer" },
 			},
 			providers = {
 				dadbod = {
@@ -34,4 +41,8 @@ return {
 			},
 		},
 	},
+	config = function(_, opts)
+		require("blink.cmp").setup(opts)
+		require("luasnip.loaders.from_vscode").lazy_load()
+	end
 }
