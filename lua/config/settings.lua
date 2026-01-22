@@ -80,6 +80,8 @@ vim.opt.guicursor = {
 vim.keymap.set({ "n", "v" }, "<leader>j", "<C-d>zz")
 vim.keymap.set({ "n", "v" }, "<leader>k", "<C-u>zz")
 -- navegacion para split
+vim.keymap.set("n", "<leader>vs", ":vs<CR>", { desc = "Split Vertical" })
+vim.keymap.set("n", "<leader>vh", ":split<CR>", { desc = "Split Horizontal" })
 vim.keymap.set("n", "<leader>wh", "<C-w>h", { desc = "Split left" })
 vim.keymap.set("n", "<leader>wj", "<C-w>j", { desc = "Split down" })
 vim.keymap.set("n", "<leader>wk", "<C-w>k", { desc = "Split up" })
