@@ -40,10 +40,10 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
 -- CURSOR LINKING --nofunciona en warp
 vim.opt.guicursor = {
-  "n-v-c:block-Cursor/lCursor",
-  "i-ci-ve:ver25-Cursor/lCursor",
-  "r-cr-o:hor20-Cursor/lCursor",
-  "a:blinkwait700-blinkoff400-blinkon250",
+	"n-v-c:block-Cursor/lCursor",
+	"i-ci-ve:ver25-Cursor/lCursor",
+	"r-cr-o:hor20-Cursor/lCursor",
+	"a:blinkwait700-blinkoff400-blinkon250",
 }
 
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
@@ -71,7 +71,6 @@ vim.keymap.set("n", "<leader>wk", "<C-w>k", { desc = "Split up" })
 vim.keymap.set("n", "<leader>wl", "<C-w>l", { desc = "Split right" })
 
 vim.keymap.set("n", "<leader>e", ":Neotree toggle<CR>")
--- vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { silent = true })
 -- vim.keymap.set("n", "<leader>f", ":NvimTreeFindFile<CR>", { silent = true })
 
 vim.diagnostic.config({
