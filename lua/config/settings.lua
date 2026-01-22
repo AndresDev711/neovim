@@ -33,6 +33,21 @@ local function set_line_number_colors()
 	-- vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = "#f2f2f2" })
 	-- vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg = "#3a3a3a" })
 end
+
+vim.keymap.set("n", "<leader>hh", function()
+  local clients = vim.lsp.get_clients({ bufnr = 0 })
+  for _, client in ipairs(clients) do
+    if client.server_capabilities.documentHighlightProvider then
+      vim.lsp.buf.document_highlight()
+      return
+    end
+  end
+  vim.notify("LSP no soporta documentHighlight", vim.log.levels.WARN)
+end, { desc = "Highlight references (LSP)" })
+
+vim.keymap.set("n", "<leader>hc", vim.lsp.buf.clear_references,
+  { desc = "Clear references" }
+)
 set_line_number_colors()
 vim.api.nvim_create_autocmd("ColorScheme", {
 	callback = set_line_number_colors
@@ -46,20 +61,20 @@ vim.opt.guicursor = {
 	"a:blinkwait700-blinkoff400-blinkon250",
 }
 
-vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-	callback = function()
-		local clients = vim.lsp.get_clients({ bufnr = 0 })
-		for _, client in ipairs(clients) do
-			if client.server_capabilities.documentHighlightProvider then
-				vim.lsp.buf.document_highlight()
-				return
-			end
-		end
-	end,
-})
-vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-	callback = vim.lsp.buf.clear_references,
-})
+-- vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+-- 	callback = function()
+-- 		local clients = vim.lsp.get_clients({ bufnr = 0 })
+-- 		for _, client in ipairs(clients) do
+-- 			if client.server_capabilities.documentHighlightProvider then
+-- 				vim.lsp.buf.document_highlight()
+-- 				return
+-- 			end
+-- 		end
+-- 	end,
+-- })
+-- vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+-- 	callback = vim.lsp.buf.clear_references,
+-- })
 
 -- Esto funciona en modo Normal y modo Visual
 vim.keymap.set({ "n", "v" }, "<leader>j", "<C-d>zz")
