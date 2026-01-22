@@ -17,7 +17,6 @@ vim.g.db_ui_use_nerd_fonts = 1
 vim.env.PATH = vim.env.PATH .. ":/opt/homebrew/opt/mysql-client/bin"
 vim.g.db_ui_save_location = vim.fn.expand("~/Projects/db")
 
-
 local function set_line_number_colors()
 	vim.api.nvim_set_hl(0, "CursorLineNr", {
 		fg = "#ffb86c",
@@ -33,22 +32,22 @@ local function set_line_number_colors()
 	-- vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = "#f2f2f2" })
 	-- vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg = "#3a3a3a" })
 end
-
-vim.keymap.set("n", "<leader>hh", function()
-  local clients = vim.lsp.get_clients({ bufnr = 0 })
-  for _, client in ipairs(clients) do
-    if client.server_capabilities.documentHighlightProvider then
-      vim.lsp.buf.document_highlight()
-      return
-    end
-  end
-  vim.notify("LSP no soporta documentHighlight", vim.log.levels.WARN)
-end, { desc = "Highlight references (LSP)" })
-
-vim.keymap.set("n", "<leader>hc", vim.lsp.buf.clear_references,
-  { desc = "Clear references" }
-)
 set_line_number_colors()
+
+vim.keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Buffer delete" })
+vim.keymap.set("n", "<leader>hh", function()
+	local clients = vim.lsp.get_clients({ bufnr = 0 })
+	for _, client in ipairs(clients) do
+		if client.server_capabilities.documentHighlightProvider then
+			vim.lsp.buf.document_highlight()
+			return
+		end
+	end
+	vim.notify("LSP no soporta documentHighlight", vim.log.levels.WARN)
+end, { desc = "Highlight references (LSP)" })
+vim.keymap.set("n", "<leader>hc", vim.lsp.buf.clear_references,
+	{ desc = "Clear references" }
+)
 vim.api.nvim_create_autocmd("ColorScheme", {
 	callback = set_line_number_colors
 })
