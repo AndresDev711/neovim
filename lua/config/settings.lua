@@ -35,6 +35,7 @@ end
 set_line_number_colors()
 
 vim.keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Buffer delete" })
+vim.keymap.set("n", "<leader>ww", ":w<CR>", { desc = "Buffer delete" })
 vim.keymap.set("n", "<leader>hh", function()
 	local clients = vim.lsp.get_clients({ bufnr = 0 })
 	for _, client in ipairs(clients) do
