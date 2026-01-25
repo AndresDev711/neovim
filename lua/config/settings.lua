@@ -28,38 +28,23 @@ local function set_line_number_colors()
 	vim.api.nvim_set_hl(0, "LineNrBelow", {
 		fg = "#bbbbbb",
 	})
+	-- vim.opt.guicursor = {
+	-- 	"n-v-c:block-Cursor/lCursor",
+	-- 	"i-ci-ve:ver25-Cursor/lCursor",
+	-- 	"r-cr-o:hor20-Cursor/lCursor",
+	-- 	"a:blinkwait700-blinkoff400-blinkon250",
+	-- }
 	-- vim.api.nvim_set_hl(0, "LspReferenceText", { bg = "#ffffff" })
 	-- vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = "#f2f2f2" })
 	-- vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg = "#3a3a3a" })
 end
 set_line_number_colors()
 
-vim.keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Buffer delete" })
-vim.keymap.set("n", "<leader>ww", ":w<CR>", { desc = "Buffer delete" })
-vim.keymap.set("n", "<leader>hh", function()
-	local clients = vim.lsp.get_clients({ bufnr = 0 })
-	for _, client in ipairs(clients) do
-		if client.server_capabilities.documentHighlightProvider then
-			vim.lsp.buf.document_highlight()
-			return
-		end
-	end
-	vim.notify("LSP no soporta documentHighlight", vim.log.levels.WARN)
-end, { desc = "Highlight references (LSP)" })
-vim.keymap.set("n", "<leader>hc", vim.lsp.buf.clear_references,
-	{ desc = "Clear references" }
-)
+-- vim.keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Buffer delete" })
+-- vim.keymap.set("n", "<leader>bo",  ":%bd|e#<CR>", { desc = "Buffer delete all" })
 vim.api.nvim_create_autocmd("ColorScheme", {
 	callback = set_line_number_colors
 })
-
--- CURSOR LINKING --nofunciona en warp
-vim.opt.guicursor = {
-	"n-v-c:block-Cursor/lCursor",
-	"i-ci-ve:ver25-Cursor/lCursor",
-	"r-cr-o:hor20-Cursor/lCursor",
-	"a:blinkwait700-blinkoff400-blinkon250",
-}
 
 -- vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 -- 	callback = function()
@@ -75,21 +60,6 @@ vim.opt.guicursor = {
 -- vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
 -- 	callback = vim.lsp.buf.clear_references,
 -- })
-
--- Esto funciona en modo Normal y modo Visual
-vim.keymap.set({ "n", "v" }, "<leader>j", "<C-d>zz")
-vim.keymap.set({ "n", "v" }, "<leader>k", "<C-u>zz")
--- navegacion para split
-vim.keymap.set("n", "<leader>vs", ":vs<CR>", { desc = "Split Vertical" })
-vim.keymap.set("n", "<leader>vh", ":split<CR>", { desc = "Split Horizontal" })
-vim.keymap.set("n", "<leader>wh", "<C-w>h", { desc = "Split left" })
-vim.keymap.set("n", "<leader>wj", "<C-w>j", { desc = "Split down" })
-vim.keymap.set("n", "<leader>wk", "<C-w>k", { desc = "Split up" })
-vim.keymap.set("n", "<leader>wl", "<C-w>l", { desc = "Split right" })
-
-vim.keymap.set("n", "<leader>e", ":Neotree toggle<CR>")
--- vim.keymap.set("n", "<leader>f", ":NvimTreeFindFile<CR>", { silent = true })
-
 vim.diagnostic.config({
 	virtual_text = true,
 	float = {
@@ -124,13 +94,6 @@ vim.api.nvim_set_keymap(
 	{ noremap = true, silent = true }
 )
 
-vim.keymap.set({ "n", "v" }, "<leader>l", function()
-	require("conform").format({
-		lsp_fallback = true,
-		async = false,
-		timeout_ms = 500,
-	})
-end, { desc = "Format file (Prettier)" })
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "json",
