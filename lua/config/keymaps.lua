@@ -1,13 +1,14 @@
 -- NODE COMMANDS
-vim.keymap.set("n", "<leader>no", ":NodeOn<CR>", { desc = "Run npm run dev" })
-vim.keymap.set("n", "<leader>ns", ":NodeStop<CR>", { desc = "Node stop server" })
-vim.keymap.set("n", "<leader>du", ":DockerUp<CR>", { desc = "Docker compose up" })
-vim.keymap.set("n", "<leader>ds", ":DockerDown<CR>", { desc = "Docker compose down" })
+-- vim.keymap.set("n", "<leader>no", ":NodeOn<CR>", { desc = "Run npm run dev" })
+-- vim.keymap.set("n", "<leader>ns", ":NodeStop<CR>", { desc = "Node stop server" })
+-- vim.keymap.set("n", "<leader>du", ":DockerUp<CR>", { desc = "Docker compose up" })
+-- vim.keymap.set("n", "<leader>ds", ":DockerDown<CR>", { desc = "Docker compose down" })
 
 --BUFFERS
-vim.keymap.set("n", "<leader>bd", function()
-	require("bufdelete").bufdelete(0, true)
-end, { desc = "Delete buffer safely" })
+vim.keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Buffer delete" })
+-- vim.keymap.set("n", "<leader>bd", function()
+-- 	require("bufdelete").bufdelete(0, true)
+-- end, { desc = "Delete buffer safely" })
 
 vim.keymap.set("n", "<leader>ba", function()
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do

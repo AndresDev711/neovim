@@ -1,72 +1,72 @@
 local job = nil
 
-vim.api.nvim_create_user_command("DockerUp", function()
-  vim.system(
-    { "docker", "compose", "up", "-d" },
-    {
-      stderr = function(_, data)
-        if data then
-          vim.schedule(function()
-            vim.notify(data, vim.log.levels.ERROR)
-          end)
-        end
-      end,
-    },
-    function(out)
-      vim.schedule(function()
-        if out.code == 0 then
-          vim.notify("Docker up ✔", vim.log.levels.INFO)
-        else
-          vim.notify("Docker failed (" .. out.code .. ")", vim.log.levels.ERROR)
-        end
-      end)
-    end
-  )
-end, {})
-
-vim.api.nvim_create_user_command("DockerDown", function()
-  vim.fn.system({ "docker", "compose", "stop" })
-  vim.notify("Docker containers stopped", vim.log.levels.WARN)
-end, {})
-
-vim.api.nvim_create_user_command("NodeOn", function()
-	job = vim.system(
-		{ "npm", "run", "dev" },
-		{
-			stdout = function(_, data)
-				if data then
-					vim.schedule(function()
-						vim.notify(data, vim.log.levels.INFO)
-					end)
-				end
-			end,
-			stderr = function(_, data)
-				if data then
-					vim.schedule(function()
-						vim.notify(data, vim.log.levels.ERROR)
-					end)
-				end
-			end,
-		},
-		function(out)
-			vim.schedule(function()
-				vim.notify("Node process ended: " .. out.code, vim.log.levels.WARN)
-			end)
-		end)
-end, {})
-
-vim.api.nvim_create_user_command("NodeStop", function()
-	if job then
-		job:kill(15)
-		vim.notify("Node Server stopped", vim.log.levels.INFO)
-		job=nil
-	end
-end, {})
-
-vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
-	callback = function()
-		if job then
-		 job:kill(15)
-		end
-	end
-})
+-- vim.api.nvim_create_user_command("DockerUp", function()
+--   vim.system(
+--     { "docker", "compose", "up", "-d" },
+--     {
+--       stderr = function(_, data)
+--         if data then
+--           vim.schedule(function()
+--             vim.notify(data, vim.log.levels.ERROR)
+--           end)
+--         end
+--       end,
+--     },
+--     function(out)
+--       vim.schedule(function()
+--         if out.code == 0 then
+--           vim.notify("Docker up ✔", vim.log.levels.INFO)
+--         else
+--           vim.notify("Docker failed (" .. out.code .. ")", vim.log.levels.ERROR)
+--         end
+--       end)
+--     end
+--   )
+-- end, {})
+--
+-- vim.api.nvim_create_user_command("DockerDown", function()
+--   vim.fn.system({ "docker", "compose", "stop" })
+--   vim.notify("Docker containers stopped", vim.log.levels.WARN)
+-- end, {})
+--
+-- vim.api.nvim_create_user_command("NodeOn", function()
+-- 	job = vim.system(
+-- 		{ "npm", "run", "dev" },
+-- 		{
+-- 			stdout = function(_, data)
+-- 				if data then
+-- 					vim.schedule(function()
+-- 						vim.notify(data, vim.log.levels.INFO)
+-- 					end)
+-- 				end
+-- 			end,
+-- 			stderr = function(_, data)
+-- 				if data then
+-- 					vim.schedule(function()
+-- 						vim.notify(data, vim.log.levels.ERROR)
+-- 					end)
+-- 				end
+-- 			end,
+-- 		},
+-- 		function(out)
+-- 			vim.schedule(function()
+-- 				vim.notify("Node process ended: " .. out.code, vim.log.levels.WARN)
+-- 			end)
+-- 		end)
+-- end, {})
+--
+-- vim.api.nvim_create_user_command("NodeStop", function()
+-- 	if job then
+-- 		job:kill(15)
+-- 		vim.notify("Node Server stopped", vim.log.levels.INFO)
+-- 		job=nil
+-- 	end
+-- end, {})
+--
+-- vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
+-- 	callback = function()
+-- 		if job then
+-- 		 job:kill(15)
+-- 		end
+-- 	end
+-- })

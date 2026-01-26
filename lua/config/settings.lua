@@ -40,7 +40,6 @@ local function set_line_number_colors()
 end
 set_line_number_colors()
 
--- vim.keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Buffer delete" })
 -- vim.keymap.set("n", "<leader>bo",  ":%bd|e#<CR>", { desc = "Buffer delete all" })
 vim.api.nvim_create_autocmd("ColorScheme", {
 	callback = set_line_number_colors
