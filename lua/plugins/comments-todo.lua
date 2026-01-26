@@ -19,6 +19,7 @@ return {
 			NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
 			TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
 			GET = { icon = "󰖟 ", color = "http", alt = { "POST", "PUT", "DELETE" } },
+			INJECT = { icon = " ", color = "inject", alt = { "USECASES", "DATASOURCE", "REPOSITORY" } }
 		},
 		gui_style = {
 			fg = "NONE",                  -- The gui style to use for the fg highlight group.
@@ -46,7 +47,8 @@ return {
 			hint = { "DiagnosticHint", "#10B981" },
 			default = { "Identifier", "#7C3AED" },
 			test = { "Identifier", "#FF00FF" },
-			http = { "Identifier", "#FF00FF" }
+			http = { "Identifier", "#FF00FF" },
+			inject = { "#225522", "#fff" }
 		},
 		search = {
 			command = "rg",
