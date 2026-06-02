@@ -5,6 +5,36 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 		end
 
+	end,
+})
+
+vim.lsp.config("lua_ls", {
+	capabilities = require("blink.cmp").get_lsp_capabilities(),
+})
+
+vim.lsp.config("vtsls", {
+	capabilities = require("blink.cmp").get_lsp_capabilities(),
+})
+
+vim.lsp.config("html", {
+	capabilities = require("blink.cmp").get_lsp_capabilities(),
+})
+vim.lsp.config("cssls", {
+	capabilities = require("blink.cmp").get_lsp_capabilities(),
+})
+
+vim.lsp.enable("lua_ls")
+vim.lsp.enable("vtsls")
+vim.lsp.enable("html")
+vim.lsp.enable("cssls")
+-- vim.lsp.enable("emmet", require("nixCatsUtils").enableForCategory("javascript"))
+
+
+
+
+
+
+
 		-- map("gd", require("snacks").picker.lsp_definitions, "[G]oto [D]efinition")
 		-- map("gr", require("snacks").picker.lsp_references, "[G]oto [R]eferences")
 		-- map("gI", require("snacks").picker.lsp_implementations, "[G]oto [I]mplementation")
@@ -48,17 +78,3 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- 		end,
 		-- 	})
 		-- end
-	end,
-})
-
-vim.lsp.config("lua_ls", {
-	capabilities = require("blink.cmp").get_lsp_capabilities(),
-})
-
-vim.lsp.config("vtsls", {
-	capabilities = require("blink.cmp").get_lsp_capabilities(),
-})
-
-vim.lsp.enable("lua_ls")
-vim.lsp.enable("vtsls")
--- vim.lsp.enable("emmet", require("nixCatsUtils").enableForCategory("javascript"))
