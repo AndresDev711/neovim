@@ -22,11 +22,15 @@ vim.lsp.config("html", {
 vim.lsp.config("cssls", {
 	capabilities = require("blink.cmp").get_lsp_capabilities(),
 })
+vim.lsp.config("kotlin_language_server", {
+	capabilities = require("blink.cmp").get_lsp_capabilities(),
+})
 
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("vtsls")
 vim.lsp.enable("html")
 vim.lsp.enable("cssls")
+vim.lsp.enable("kotlin_language_server")
 -- vim.lsp.enable("emmet", require("nixCatsUtils").enableForCategory("javascript"))
 
 

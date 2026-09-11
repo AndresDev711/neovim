@@ -30,6 +30,7 @@ todas las especificaciones desde `lua/plugins`.
 ├── lsp/
 │   ├── css_lsp.lua
 │   ├── html_lsp.lua
+│   ├── kotlin_language_server.lua
 │   ├── lua_ls.lua
 │   └── ts_ls.lua
 └── lua/
@@ -151,6 +152,7 @@ Actualmente se configuran capabilities desde `blink.cmp` para:
 - `vtsls`
 - `html`
 - `cssls`
+- `kotlin_language_server`
 
 Y se habilitan esos mismos servidores con `vim.lsp.enable`.
 
@@ -161,6 +163,9 @@ Notas importantes:
 - Existen archivos en `lsp/` para `lua_ls`, `ts_ls`, `html_lsp` y `css_lsp`.
   Antes de asumir que estan en uso, validar la version de Neovim y como
   `vim.lsp.config` esta resolviendo configuraciones locales.
+- `kotlin_language_server` usa el comando externo `kotlin-language-server`; si
+  no esta instalado, instalarlo desde Mason o el gestor del sistema antes de
+  esperar que se adjunte en archivos `.kt`/`.kts`.
 - Hay una diferencia visible entre `ts_ls.lua` y el servidor activo `vtsls`.
   Tratar esto con cuidado si se corrige TypeScript LSP.
 
