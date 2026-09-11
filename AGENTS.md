@@ -163,9 +163,8 @@ Notas importantes:
 - Existen archivos en `lsp/` para `lua_ls`, `ts_ls`, `html_lsp` y `css_lsp`.
   Antes de asumir que estan en uso, validar la version de Neovim y como
   `vim.lsp.config` esta resolviendo configuraciones locales.
-- `kotlin_language_server` usa el comando externo `kotlin-language-server`; si
-  no esta instalado, instalarlo desde Mason o el gestor del sistema antes de
-  esperar que se adjunte en archivos `.kt`/`.kts`.
+- `kotlin_language_server` usa el binario instalado por Mason y fuerza Temurin
+  21 como `JAVA_HOME`, porque el servidor falla con Java 25.
 - Hay una diferencia visible entre `ts_ls.lua` y el servidor activo `vtsls`.
   Tratar esto con cuidado si se corrige TypeScript LSP.
 

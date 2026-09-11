@@ -24,6 +24,12 @@ vim.lsp.config("cssls", {
 })
 vim.lsp.config("kotlin_language_server", {
 	capabilities = require("blink.cmp").get_lsp_capabilities(),
+	cmd = {
+		"/usr/bin/env",
+		"JAVA_HOME=/Users/andredev711/Library/Java/JavaVirtualMachines/temurin-21.0.12.1/Contents/Home",
+		"PATH=/Users/andredev711/Library/Java/JavaVirtualMachines/temurin-21.0.12.1/Contents/Home/bin:" .. vim.env.PATH,
+		vim.fn.stdpath("data") .. "/mason/bin/kotlin-language-server",
+	},
 })
 
 vim.lsp.enable("lua_ls")
